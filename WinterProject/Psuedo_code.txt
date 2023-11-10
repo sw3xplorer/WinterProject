@@ -1,0 +1,39 @@
+Idea of the game: Text RPG
+3 main quests and 3 side quests
+1st main quest is forced. After that the player can choose to do a sidequest or the main quest
+
+In a quest:
+- Dialouge is written from NPC characters or narrator
+- Occasionaly have dialouge options the player can choose which gives different responses from the NPC
+- During a quest, combat can occur.
+- Final main quest has a boss
+
+During combat:
+- Player can attack and use items from the inventory. (might add blocking)
+- Player chooses through a menu with WASD and ENTER keys.
+- Plyaer goes first, then the enemies.
+- For every enemy killed in combat, drops coins and loot
+- If player kills all enemies: finish combat and continue story
+- If player dies: game over and give a prompt to restart the game
+
+Player:
+- The player has an inventory with a carry limit defined by weight
+- The player has a current HP and max HP value.
+- The player has an equipped weapon he can swap with another one in his inventory
+    - Inventory can be accesed through a key (I)
+- The player can carry items such as healing potions, food or throwables
+- The player has armor that affects max HP
+- Has currency to buy items at shop
+
+Enemy:
+- Every enemy has HP and max HP
+- All enemies have a certain weapon that deals damage
+- Every enemy drops gold with a chance for misc loot
+    - Harder enemise have better rewards
+
+Weapon:
+- Has a min-max damage
+- Has a crit chance
+- Has a crit multiplier
+- Has a chance to hit
+- Has a weight
