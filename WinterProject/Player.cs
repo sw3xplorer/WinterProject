@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-
-public class Player : Character
+﻿public class Player : Character
 {
     public Inventory inventory = new();
     public Player()
