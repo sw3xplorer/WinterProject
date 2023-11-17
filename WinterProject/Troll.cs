@@ -1,9 +1,9 @@
-﻿public class Troll :Character
+﻿public class Troll : Character
 {
     public Troll()
     {
-        maxHp = 250;
-        hp = maxHp;
+        _maxHp = 250;
+        _hp = _maxHp;
         weapon = Armory.enemyWeapons[4];
     }
 }

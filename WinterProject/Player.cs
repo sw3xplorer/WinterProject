@@ -1,10 +1,10 @@
 ﻿public class Player : Character
 {
-    public Inventory inventory = new();
+    Inventory inventory = new();
     public Player()
     {
-        maxHp = 200;
-        hp = maxHp;
-        
+        _maxHp = 200;
+        _hp = _maxHp;
+
     }
 }

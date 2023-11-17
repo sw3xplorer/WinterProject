@@ -2,8 +2,8 @@
 {
     public Bat()
     {
-        maxHp = 10;
-        hp = maxHp;
+        _maxHp = 10;
+        _hp = _maxHp;
         weapon = Armory.enemyWeapons[2];
     }
 }

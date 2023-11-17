@@ -2,8 +2,8 @@
 {
     public Werewolf()
     {
-        maxHp = 500;
-        hp = maxHp;
+        _maxHp = 500;
+        _hp = _maxHp;
         weapon = Armory.enemyWeapons[5];
     }
 }

@@ -3,7 +3,7 @@
     public static List<Weapon> enemyWeapons = new();
     List<Weapon> playerWeapons = new();
 
-    public Armory()
+    Armory()
     {
         // Enemy weapons
         enemyWeapons.Add(new() { name = "Wooden Club", minDamage = 1, maxDamage = 5, critChance = 5, critMultiplier = 2, hitChance = 80});

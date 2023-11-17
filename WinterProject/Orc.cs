@@ -2,8 +2,8 @@
 {
     public Orc()
     {
-        maxHp = 100;
-        hp = maxHp;
+        _maxHp = 100;
+        _hp = _maxHp;
         weapon = Armory.enemyWeapons[3];
     }
 }
