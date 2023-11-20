@@ -3,8 +3,9 @@
     public BanditArmor()
     {
         name = "Bandit armor";
-        _addedHp = 50;
-        weight = 15;
-        
+        _addedHp = 100;
+        weight = 12;
+        cost = 150;
+        sellPrice = 100;
     }
 }

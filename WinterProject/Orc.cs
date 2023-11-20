@@ -4,6 +4,12 @@
     {
         _maxHp = 100;
         _hp = _maxHp;
-        weapon = Armory.enemyWeapons[3];
+        weapon = new() { name = "Stone Sword", minDamage = 10, maxDamage = 17, critChance = 10, critMultiplier = 2, hitChance = 85 };
+    }
+
+    public override void OnDeath(Player player, Character enemy)
+    {
+        _droppedCoins = generator.Next(25, 91);
+        player.Coins += _droppedCoins;
     }
 }

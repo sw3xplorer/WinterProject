@@ -1,8 +1,11 @@
 ﻿public class Character
 {
     // Protected is in between private and public. "Semi-public"
+    protected Random generator = new Random();
     protected int _hp;
     protected int _maxHp;
+    protected int _droppedCoins;
+    protected int _coins;
 
     public int Hp
     {
@@ -29,11 +32,27 @@
         }
     }
 
+    public int Coins
+    {
+        get
+        {
+            return _droppedCoins;
+        }
+        set
+        {
+            _coins += value;
+        }
+    }
+
     protected Weapon weapon = new();
 
     protected virtual void Attack()
     {
 
+    }
+    public virtual void OnDeath(Player player, Character enemy)
+    {
+        player._coins += enemy._droppedCoins;
     }
 
 }
