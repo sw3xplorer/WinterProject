@@ -1,4 +1,4 @@
-﻿public class Potion : Item
+﻿public class Potion : Item, IConsumable
 {
     public Potion()
     {
@@ -7,5 +7,10 @@
         cost = 50;
         sellPrice = 20;
         effect = 75;
+    }
+
+    public virtual void Consume(Character character)
+    {
+        character.Hp += effect;
     }
 }

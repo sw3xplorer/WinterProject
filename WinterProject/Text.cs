@@ -23,4 +23,29 @@
         Console.WriteLine("You head out of the guild and towards the woods.");
 
     }
+    public static void PlayerInfo(Character player)
+    {
+        Console.WriteLine($"HP: {player.Hp}/{player.MaxHp}");
+        Console.SetCursorPosition(20,0);
+        Console.WriteLine($"Coins: {player.Coins}");
+        
+    }
+
+
+
+
+
+
+    public static void ClearArea(int startX, int startY, int endX, int endY)
+    {
+        for (int i = startX; i < endX; i++)
+        {
+                for (int j = startY; j < endY; j++)
+                {
+                    Console.SetCursorPosition(i, j);
+                    Console.Write(" ");
+
+                }
+        }
+    }
 }
