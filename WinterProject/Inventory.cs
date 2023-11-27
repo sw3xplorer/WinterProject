@@ -1,8 +1,32 @@
 ﻿public class Inventory
 {
     List<Item> items = new();
-    int maxWeight = 50;
-    int weight = 0;
+    int _maxWeight = 50;
+    int _weight = 0;
+    int i = 0;
+
+    public int Weight
+    {
+        get
+        {
+            return _weight;
+        }
+        private set
+        {
+
+        }
+    }
+    public int MaxWeight
+    {
+        get
+        {
+            return _maxWeight;
+        }
+        private set
+        {
+
+        }
+    }
 
     public List<Item> Inv
     {
@@ -16,28 +40,42 @@
         }
     }
 
-    public void DisplayConsumables()
+    // public void DisplayConsumables()
+    // {
+    //     foreach (Item item in items)
+    //     {
+    //         if (item is IConsumable)
+    //         {
+
+
+    //             ((IConsumable)item).Consume
+    //         }
+    //     }
+    // }
+    public void WriteConsumables()
     {
-        foreach (Item item in items)
+        i = 0;
+        foreach(Item item in items)
         {
-            if (item is IConsumable)
+            if (item is Potion)
             {
-
-
-                ((IConsumable)item).Consume
+                Console.SetCursorPosition(1, i);
+                Console.WriteLine(item.name);
+                i += 2;
             }
         }
     }
 
     public void AddItem(Item item)
     {
-        if (weight + item.weight > 50)
+        if (_weight + item.weight > 50)
         {
-            Console.WriteLine("Not enough space");
+            Console.WriteLine("Not enough space.");
         }
         else
         {
             items.Add(item);
+            _weight += item.weight;
         }
     }
 }

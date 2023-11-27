@@ -6,6 +6,7 @@
     protected int _maxHp;
     protected int _droppedCoins;
     protected int _coins;
+    protected string _name;
 
     public int Hp
     {
@@ -44,9 +45,21 @@
         }
     }
 
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+        private set
+        {
+
+        }
+    }
+
     protected Weapon weapon = new();
 
-    protected virtual void Attack()
+    public virtual void Attack()
     {
 
     }
@@ -54,5 +67,6 @@
     {
         player._coins += enemy._droppedCoins;
     }
-
+    
+    
 }

@@ -1,5 +1,6 @@
 ﻿public class Potion : Item, IConsumable
 {
+    protected bool _isConsumable = true;
     public Potion()
     {
         name = "Healing potion";

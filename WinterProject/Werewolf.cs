@@ -2,6 +2,7 @@
 {
     public Werewolf()
     {
+        _name = "Werewolf";
         _maxHp = 500;
         _hp = _maxHp;
         weapon = new() { name = "Werewolf Claw", minDamage = 38, maxDamage = 40, critChance = 20, critMultiplier = 3, hitChance = 95 };

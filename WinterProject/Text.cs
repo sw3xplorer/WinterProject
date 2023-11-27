@@ -23,11 +23,13 @@
         Console.WriteLine("You head out of the guild and towards the woods.");
 
     }
-    public static void PlayerInfo(Character player)
+    public static void PlayerInfo(Character player, Inventory inventory)
     {
         Console.WriteLine($"HP: {player.Hp}/{player.MaxHp}");
         Console.SetCursorPosition(20,0);
         Console.WriteLine($"Coins: {player.Coins}");
+        Console.SetCursorPosition(40, 0);
+        Console.WriteLine($"Weight: {inventory.Weight}/{inventory.MaxWeight}");
         
     }
 

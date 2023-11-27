@@ -3,6 +3,7 @@
     public Goblin()
     {
         // Random generator = new Random();
+        _name = "Goblin";
         _hp = 25;
         _maxHp = _hp;
         if(generator.Next(1) == 1)
