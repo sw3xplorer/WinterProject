@@ -2,9 +2,21 @@
 Inventory inventory = new();
 Item p = new Potion();
 Item lP = new LargePotion();
-Character player = new Player();
+Player player = new Player();
+
+
+player.inventory.AddItem(p);
+player.inventory.AddItem(p);
+player.inventory.AddItem(p);
+player.inventory.AddItem(lP);
+player.inventory.AddItem(lP);
+
+
+inventory.WriteConsumables();
 
 Text.PlayerInfo(player, inventory);
+
+player.Control();
 
 Console.ReadLine();
 

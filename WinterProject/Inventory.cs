@@ -3,7 +3,7 @@
     List<Item> items = new();
     int _maxWeight = 50;
     int _weight = 0;
-    int i = 0;
+    int i = 3;
 
     public int Weight
     {
@@ -54,10 +54,10 @@
     // }
     public void WriteConsumables()
     {
-        i = 0;
+        i = 3;
         foreach(Item item in items)
         {
-            if (item is Potion)
+            if (item is Potion || item is LargePotion)
             {
                 Console.SetCursorPosition(1, i);
                 Console.WriteLine(item.name);
