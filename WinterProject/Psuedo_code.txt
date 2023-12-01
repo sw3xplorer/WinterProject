@@ -37,3 +37,8 @@ Weapon:
 - Has a crit multiplier
 - Has a chance to hit
 - Has a weight
+
+
+Update:
+- Player chooses between doing a side quest which can be repeated for rewards, going to the shop, or doing the "final main mission".
+    (this is due to time constraint)

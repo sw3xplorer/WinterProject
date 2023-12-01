@@ -1,5 +1,8 @@
 ﻿public class Text
 {
+    
+    // Wilderness = side-quest
+    // Howling Grotto = main-quest (and final boss)
     public static void Intro()
     {
         // Waking up
@@ -25,14 +28,21 @@
     }
     public static void PlayerInfo(Player player, Inventory inventory)
     {
+        Console.SetCursorPosition(0, 0);
         Console.WriteLine($"HP: {player.Hp}/{player.MaxHp}");
-        Console.SetCursorPosition(20,0);
+        Console.SetCursorPosition(20, 0);
         Console.WriteLine($"Coins: {player.Coins}");
         Console.SetCursorPosition(40, 0);
         Console.WriteLine($"Weight: {player.inventory.Weight}/{player.inventory.MaxWeight}");
-        
+
     }
 
+    public static void EnemyInfo(Character enemy)
+    {
+        Console.SetCursorPosition(120, 0);
+        Console.WriteLine($"{enemy.Name} HP: {enemy.Hp}/{enemy.MaxHp}");
+
+    }
 
 
 
@@ -42,12 +52,12 @@
     {
         for (int i = startX; i < endX; i++)
         {
-                for (int j = startY; j < endY; j++)
-                {
-                    Console.SetCursorPosition(i, j);
-                    Console.Write(" ");
+            for (int j = startY; j < endY; j++)
+            {
+                Console.SetCursorPosition(i, j);
+                Console.Write(" ");
 
-                }
+            }
         }
     }
 }
