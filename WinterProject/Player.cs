@@ -122,7 +122,7 @@
     }
 
     // Player can either attack or use item.
-    public void Control()
+    public void Control(Character target)
     {
         _confirmAction = false;
         Console.SetCursorPosition(1, 3);
@@ -154,7 +154,7 @@
             else if (key.Key == ConsoleKey.Enter)
             {
                 _confirmAction = true;
-                Attack();
+                Attack(target);
             }
 
             // ITEM CHOICE
