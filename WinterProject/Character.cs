@@ -59,9 +59,9 @@
 
     protected Weapon weapon = new();
 
-    public virtual void Attack()
+    public virtual void Attack(Character attacker, Character target)
     {
-
+        target.Hp -= generator.Next(attacker.weapon.minDamage, attacker.weapon.maxDamage);
     }
     public virtual void OnDeath(Player player, Character enemy)
     {
