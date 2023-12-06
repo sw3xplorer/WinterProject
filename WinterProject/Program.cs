@@ -28,5 +28,8 @@ player.Move();
 
 player.Control(goblin);
 
+
+
+
 Console.ReadLine();
 

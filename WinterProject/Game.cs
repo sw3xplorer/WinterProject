@@ -2,6 +2,7 @@
 {
     public static void InCombat(Player player, Character enemy)
     {
+        
         while(player.Hp > 0 && enemy.Hp > 0)
         {
             player.Control(enemy);
@@ -10,7 +11,10 @@
         if(enemy.Hp <= 0)
         {
             enemy.OnDeath(player, enemy);
-            player.Move();
+            if(EnemyManager.enemies.Count() == 0)
+            {
+                player.Move();
+            }
         }
         else if(player.Hp <= 0)
         {
@@ -25,5 +29,16 @@
             Environment.Exit(0);
         }
     }
+
+    public static void Shop(Player player, Armor armor)
+    {
+        // I could have done this without an int variable, but it is just a mess to read.
+        int armorSold;
+        int weaponSold;
+        Random generator = new Random();
+        armorSold = generator.Next(Armory.armors.Count());
+        Console.WriteLine(Armory.armors[armorSold].AddedHp);
+    }
+
 
 }

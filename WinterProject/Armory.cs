@@ -1,12 +1,13 @@
 ﻿public class Armory
 {
-    public static List<Weapon> enemyWeapons = new();
     public static List<Weapon> playerWeapons = new();
+    public static List<Armor> armors = new();
 
     Armory()
     {
-        // Enemy weapons
-        // Empty since I'm trying another method for the time being
+        armors.Add(new BanditArmor {});
+        armors.Add(new ChainmailArmor {});
+        armors.Add(new HunterArmor {});
     } 
     
 }
