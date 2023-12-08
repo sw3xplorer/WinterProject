@@ -1,6 +1,6 @@
 ﻿public class Game
 {
-    public static void InCombat(Player player, Character enemy)
+    public static void InCombat(Player player, Character enemy, Armor armor)
     {
         
         while(player.Hp > 0 && enemy.Hp > 0)
@@ -14,6 +14,10 @@
             if(EnemyManager.enemies.Count() == 0)
             {
                 player.Move();
+            }
+            if(player.Location == "Shop")
+            {
+                Shop(player, armor);
             }
         }
         else if(player.Hp <= 0)
