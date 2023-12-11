@@ -55,12 +55,12 @@
     public void WriteConsumables()
     {
         i = 3;
-        foreach(Item item in items)
+        foreach (Item item in items)
         {
             if (item is Potion || item is LargePotion)
             {
                 Console.SetCursorPosition(1, i);
-                Console.WriteLine(item.name);
+                Console.WriteLine(item.Name);
                 i += 2;
             }
         }

@@ -5,7 +5,7 @@
         _name = "Bat";
         _maxHp = 10;
         _hp = _maxHp;
-        weapon = new() { name = "Bite", minDamage = 1, maxDamage = 3, critChance = 10, critMultiplier = 2, hitChance = 90 };
+        weapon = new Bite();
     }
     public override void OnDeath(Player player, Character enemy)
     {

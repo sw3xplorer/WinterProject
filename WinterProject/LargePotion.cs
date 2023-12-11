@@ -2,7 +2,7 @@
 {
     public LargePotion()
     {
-        name = "Large healing potion";
+        Name = "Large healing potion";
         weight = 4;
         cost = 100;
         sellPrice = 50;

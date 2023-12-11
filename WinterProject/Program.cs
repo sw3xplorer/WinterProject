@@ -1,5 +1,7 @@
 ﻿Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
 Inventory inventory = new();
+Armory a = new();
+Armor armor = new();
 Item p = new Potion();
 Item lP = new LargePotion();
 Player player = new Player();
@@ -19,15 +21,15 @@ player.inventory.AddItem(lP);
 player.inventory.AddItem(lP);
 
 
-inventory.WriteConsumables();
+// inventory.WriteConsumables();
 
 Text.EnemyInfo(goblin);
 
 Text.PlayerInfo(player, inventory);
-player.Move();
+// player.Move();
+Game.WriteItems();
 
-
-player.Control(goblin, potion);
+// player.Control(goblin, potion);
 
 
 

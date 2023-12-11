@@ -2,7 +2,7 @@
 {
     public SilverSword()
     {
-        name = "Silver sword";
+        Name = "Silver sword";
         minDamage = 20;
         maxDamage = 35;
         critChance = 20;

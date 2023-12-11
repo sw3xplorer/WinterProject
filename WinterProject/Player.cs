@@ -119,7 +119,7 @@
     }
 
     // Player can either attack or use item.
-    public void Control(Character target, Potion potion)
+    public void Control(Character target)
     {
         _confirmAction = false;
         Console.SetCursorPosition(1, 3);
@@ -196,6 +196,42 @@
         }
     }
 
+    public void Shop()
+    {
+        _confirmAction = false;
+        Console.SetCursorPosition(1, 3);
+        Console.WriteLine("Buy");
+        Console.SetCursorPosition(1, 5);
+        Console.WriteLine("Sell");
+        while (!_confirmAction)
+        {
+            _confirmItem = false;
+            if (_choice >= 0 && _choice <= 1)
+            {
+                Console.SetCursorPosition(0, 3 + _choice * 2);
+                Console.WriteLine(">");
+            }
+
+            var key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.DownArrow && _choice < 1)
+            {
+                _choice++;
+                Console.SetCursorPosition(0, 3 + ((_choice - 1) * 2));
+                Console.WriteLine(" ");
+            }
+            else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
+            {
+                _choice--;
+                Console.SetCursorPosition(0, 3 + ((_choice + 1) * 2));
+                Console.WriteLine(" ");
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                _confirmAction = true;
+                
+            }
+        }
+    }
 
     public (string, bool) SetLocation() // Returns two values.
     {

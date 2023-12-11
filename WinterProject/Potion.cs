@@ -3,7 +3,7 @@
     protected bool _isConsumable = true;
     public Potion()
     {
-        name = "Healing potion";
+        Name = "Healing potion";
         weight = 3;
         cost = 50;
         sellPrice = 20;

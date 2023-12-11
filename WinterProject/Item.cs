@@ -1,8 +1,19 @@
 ﻿public class Item
 {
     public int weight;
-    protected int cost;
+    public int cost;
     protected int sellPrice;
     protected int effect;
-    public string name = "";
+    string _name;
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+        set
+        {
+            _name = value;
+        }
+    }
 }

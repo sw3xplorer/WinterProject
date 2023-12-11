@@ -2,7 +2,7 @@
 {
     public IronSword()
     {
-        name = "Iron sword";
+        Name = "Iron sword";
         minDamage = 7;
         maxDamage = 12;
         critChance = 15;

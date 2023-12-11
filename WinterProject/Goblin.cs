@@ -6,13 +6,13 @@
         _name = "Goblin";
         _hp = 25;
         _maxHp = _hp;
-        if(generator.Next(1) == 1)
+        if (generator.Next(1) == 1)
         {
-            weapon = new() { name = "Wooden Club", minDamage = 1, maxDamage = 5, critChance = 5, critMultiplier = 2, hitChance = 80};
+            weapon = new WoodenClub();
         }
         else
         {
-            weapon = new() { name = "Spiked Bat", minDamage = 5, maxDamage = 10, critChance= 5, critMultiplier = 2, hitChance = 80 };
+            weapon = new SpikedClub();
         }
     }
 
