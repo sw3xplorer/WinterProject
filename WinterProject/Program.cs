@@ -4,6 +4,7 @@ Item p = new Potion();
 Item lP = new LargePotion();
 Player player = new Player();
 Goblin goblin = new Goblin();
+Potion potion = new Potion();
 Character currEnemy = new Character();
 // Instances can be assigned like variables if they are of the same type.
 // currEnemy = goblin; as an example.
@@ -26,7 +27,7 @@ Text.PlayerInfo(player, inventory);
 player.Move();
 
 
-player.Control(goblin);
+player.Control(goblin, potion);
 
 
 

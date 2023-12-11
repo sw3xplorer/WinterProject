@@ -2,9 +2,9 @@
 
 public class Weapon : Item
 {
-    public int minDamage;
-    public int maxDamage;
-    public int critChance;
-    public int critMultiplier;
-    public int hitChance;
+    protected int minDamage;
+    protected int maxDamage;
+    protected int critChance;
+    protected int critMultiplier;
+    protected int hitChance;
 }

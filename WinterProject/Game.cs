@@ -1,11 +1,11 @@
 ﻿public class Game
 {
-    public static void InCombat(Player player, Character enemy, Armor armor)
+    public static void InCombat(Player player, Character enemy, Armor armor, Potion potion)
     {
         
         while(player.Hp > 0 && enemy.Hp > 0)
         {
-            player.Control(enemy);
+            player.Control(enemy, potion);
             enemy.Attack(player);
         }
         if(enemy.Hp <= 0)

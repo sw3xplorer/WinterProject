@@ -89,7 +89,7 @@
                 WriteLocations();
                 while (!_confirmAction)
                 {
-                    if (_choice >= 0 && _choice <= 2)
+                    if (_choice >= 0 && _choice <= locations.Count()-1)
                     {
                         Console.SetCursorPosition(0, 3 + (_choice * 2));
                         Console.WriteLine(">");
@@ -110,50 +110,8 @@
                     }
                     else if (key.Key == ConsoleKey.Enter)
                     {
-                        // if (_choice == 0)
-                        // {
-                        //     if (Location == "Shop")
-                        //     {
-                        //         Console.SetCursorPosition(0, 10);
-                        //         Console.WriteLine("You are already here.");
-                        //     }
-                        //     else
-                        //     {
-                        //         Location = "Shop";
-                        //         _confirmAction = true;
-                        //         Text.ClearArea(0, 3, 20, 12);
-                        //     }
-                        // }
-                        // else if (_choice == 1)
-                        // {
-                        //     if (Location == "Wilderness")
-                        //     {
-                        //         Console.SetCursorPosition(0, 10);
-                        //         Console.WriteLine("You are already here.");
-                        //     }
-                        //     else
-                        //     {
-                        //         Location = "Wilderness";
-                        //         _confirmAction = true;
-                        //         Text.ClearArea(0, 3, 20, 12);
-                        //     }
-                        // }
-                        // else
-                        // {
-                        //     if (Location == "Howling Grotto")
-                        //     {
-                        //         Console.SetCursorPosition(0, 10);
-                        //         Console.WriteLine("You are already here.");
-                        //     }
-                        //     else
-                        //     {
-                        //         Location = "Howling Grotto";
-                        //         _confirmAction = true;
-                        //         Text.ClearArea(0, 3, 20, 12);
-                        //     }
-                        // }
-
-
+                        (Location, _confirmAction) = SetLocation();
+                        // Placement of variables matters. If you return string first, set a string first.
                     }
                 }
             }
@@ -233,41 +191,28 @@
                             p.Consume(this);
                         }
                     }
-
-                    // if(_confirmItem && _choice == inventory.Inv.Count()-1)
-                    // {
-                    //     Text.ClearArea(0, 1, 30, 60);
-                    //     Console.SetCursorPosition(1, 3);
-                    //     Console.WriteLine("Attack");
-                    //     Console.SetCursorPosition(1, 5);
-                    //     Console.WriteLine("Item");
-                    //     _confirmAction = false;
-                    // }
                 }
             }
         }
-        bool t;
-        string j;
-        (t, j) = Hello();
     }
 
 
-    public (string, bool) SetLocation()
+    public (string, bool) SetLocation() // Returns two values.
     {
         string location = "";
-
-        if(Location == "")
+        if(_location == locations[_choice])
         {
-
+            Console.SetCursorPosition(0, 10);
+            Console.WriteLine("You are already here.");
+            location = locations[_choice];
+            return(location, false);
         }
-
-
-        return(location, true);
-    }
-    public (bool, string) Hello() //Returns two different variables.
-    {
-        string g = "";
-        return (true, g);
+        else
+        {
+            Text.ClearArea(0, 3, 20, 12);
+            location = locations[_choice];
+            return(location, true);
+        }
     }
 }
 
