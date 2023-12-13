@@ -3,7 +3,7 @@
     public int weight;
     public int cost;
     protected int sellPrice;
-    protected int effect;
+    public int effect;
     string _name;
     public string Name
     {

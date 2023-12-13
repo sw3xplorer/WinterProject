@@ -228,7 +228,11 @@
             else if (key.Key == ConsoleKey.Enter)
             {
                 _confirmAction = true;
-                
+                if(_choice == 0)
+                {
+                    Game.WriteItems();
+                    
+                }
             }
         }
     }
