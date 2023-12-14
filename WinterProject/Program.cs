@@ -2,6 +2,9 @@
 Inventory inventory = new();
 Armory a = new();
 Armor armor = new();
+ChainmailArmor chainmailArmor = new();
+IronSword ironSword = new();
+SawCleaver sawCleaver = new();
 Item p = new Potion();
 Item lP = new LargePotion();
 Player player = new Player();
@@ -12,24 +15,24 @@ Character currEnemy = new Character();
 // currEnemy = goblin; as an example.
 
 
-
-
 player.inventory.AddItem(p);
 player.inventory.AddItem(p);
 player.inventory.AddItem(p);
 player.inventory.AddItem(lP);
 player.inventory.AddItem(lP);
+player.inventory.AddItem(ironSword);
+player.inventory.AddItem(chainmailArmor);
 
 
-// inventory.WriteConsumables();
+// Text.EnemyInfo(goblin);
+// Text.PlayerInfo(player, inventory);
+player.Control(goblin);
 
-Text.EnemyInfo(goblin);
+// player.Shop();
 
-Text.PlayerInfo(player, inventory);
 // player.Move();
-Game.WriteItems();
+// Game.WriteInventory(player);
 
-// player.Control(goblin, potion);
 
 
 

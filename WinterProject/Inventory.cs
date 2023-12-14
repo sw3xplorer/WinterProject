@@ -1,9 +1,22 @@
 ﻿public class Inventory
 {
     List<Item> items = new();
+    List<Item> potions = new();
     int _maxWeight = 50;
     int _weight = 0;
     int i = 3;
+    int _consumables;
+    public List<Item> Potions
+    {
+        get
+        {
+            return potions;
+        }
+        private set
+        {
+
+        }
+    }
 
     public int Weight
     {
@@ -55,7 +68,7 @@
     public void WriteConsumables()
     {
         i = 3;
-        foreach (Item item in items)
+        foreach (Item item in potions)
         {
             if (item is Potion || item is LargePotion)
             {
@@ -71,6 +84,10 @@
         if (_weight + item.weight > 50)
         {
             Console.WriteLine("Not enough space.");
+        }
+        else if (item is Potion)
+        {
+            potions.Add(item);
         }
         else
         {

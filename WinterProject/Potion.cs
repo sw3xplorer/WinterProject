@@ -1,6 +1,5 @@
-﻿public class Potion : Item, IConsumable
+﻿public class Potion : Item
 {
-    protected bool _isConsumable = true;
     public Potion()
     {
         Name = "Healing potion";
@@ -8,6 +7,7 @@
         cost = 50;
         sellPrice = 20;
         effect = 75;
+        _isConsumable = true;
     }
 
     public virtual void Consume(Character character)

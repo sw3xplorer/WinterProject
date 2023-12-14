@@ -12,11 +12,13 @@
     public Player()
     {
         _maxHp = 200;
-        _hp = _maxHp;
+        // _hp = _maxHp;
+        _hp = 100;
         // inventory.AddItem(potion);
         // inventory.AddItem(potion);
         // inventory.AddItem(largePotion);
         // inventory.AddItem(largePotion);
+        weapon = new IronSword();
     }
 
     public string Location
@@ -50,195 +52,62 @@
     {
         Console.SetCursorPosition(0, 3);
         Console.WriteLine("Move?");
-        Console.SetCursorPosition(1, 5);
-        Console.WriteLine("Yes");
-        Console.SetCursorPosition(1, 7);
-        Console.WriteLine("No");
-        while (!_confirmAction)
+        if(Select(1, 5, 2, "Yes", "No") && _choice == 0)
         {
-            if (_choice >= 0 && _choice <= 1)
+            Text.ClearArea(0, 3, 10, 10);
+            _confirmAction = false;
+            WriteLocations();
+            while(!_confirmAction)
             {
-                Console.SetCursorPosition(0, 5 + _choice * 2);
-                Console.WriteLine(">");
-            }
-
-            var key = Console.ReadKey(true);
-            if (key.Key == ConsoleKey.DownArrow && _choice < 1)
-            {
-                _choice++;
-                Console.SetCursorPosition(0, 5 + ((_choice - 1) * 2));
-                Console.WriteLine(" ");
-            }
-            else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
-            {
-                _choice--;
-                Console.SetCursorPosition(0, 5 + ((_choice + 1) * 2));
-                Console.WriteLine(" ");
-            }
-            else if (key.Key == ConsoleKey.Enter)
-            {
-                _confirmAction = true;
-                Text.ClearArea(0, 3, 10, 10);
-            }
-
-            // CHOOSE LOCATION
-
-            if (_confirmAction && _choice == 0)
-            {
-                _confirmAction = false;
-                WriteLocations();
-                while (!_confirmAction)
+                if(Select(locations.Count() - 1, 3, 2, "", ""))
                 {
-                    if (_choice >= 0 && _choice <= locations.Count()-1)
-                    {
-                        Console.SetCursorPosition(0, 3 + (_choice * 2));
-                        Console.WriteLine(">");
-                    }
-
-                    key = Console.ReadKey(true);
-                    if (key.Key == ConsoleKey.DownArrow && _choice < 2)
-                    {
-                        _choice++;
-                        Console.SetCursorPosition(0, 3 + ((_choice - 1) * 2));
-                        Console.WriteLine(" ");
-                    }
-                    else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
-                    {
-                        _choice--;
-                        Console.SetCursorPosition(0, 3 + ((_choice + 1) * 2));
-                        Console.WriteLine(" ");
-                    }
-                    else if (key.Key == ConsoleKey.Enter)
-                    {
-                        (Location, _confirmAction) = SetLocation();
-                        // Placement of variables matters. If you return string first, set a string first.
-                    }
+                    (Location, _confirmAction) = SetLocation();
                 }
             }
+            Console.Clear();
         }
     }
 
     // Player can either attack or use item.
     public void Control(Character target)
     {
-        _confirmAction = false;
-        Console.SetCursorPosition(1, 3);
-        Console.WriteLine("Attack");
-        Console.SetCursorPosition(1, 5);
-        Console.WriteLine("Item");
-        while (!_confirmAction)
+
+        if(Select(1, 3, 2, "Attack", "Item") && _choice == 0)
         {
-            _confirmItem = false;
-            if (_choice >= 0 && _choice <= 1)
+            Attack(target);
+        }
+        else
+        {
+            _confirmAction = false;
+            Text.ClearArea(0, 3, 10, 8);
+            inventory.WriteConsumables();
+            if(Select(inventory.Potions.Count() - 1, 3, 2, "", ""))
             {
-                Console.SetCursorPosition(0, 3 + _choice * 2);
-                Console.WriteLine(">");
-            }
-
-            var key = Console.ReadKey(true);
-            if (key.Key == ConsoleKey.DownArrow && _choice < 1)
-            {
-                _choice++;
-                Console.SetCursorPosition(0, 3 + ((_choice - 1) * 2));
-                Console.WriteLine(" ");
-            }
-            else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
-            {
-                _choice--;
-                Console.SetCursorPosition(0, 3 + ((_choice + 1) * 2));
-                Console.WriteLine(" ");
-            }
-            else if (key.Key == ConsoleKey.Enter)
-            {
-                _confirmAction = true;
-                Attack(target);
-            }
-
-            // ITEM CHOICE
-
-            if (_choice == 1 && _confirmAction)
-            {
-                Text.ClearArea(0, 3, 10, 8);
-                inventory.WriteConsumables();
-                while (!_confirmItem)
+                Text.ClearArea(0, 3, 80, Console.LargestWindowHeight - 1);
+                if (inventory.Potions[_choice] is Potion) // Check if the item IS a potion
                 {
-                    if (_choice >= 0 && _choice <= inventory.Inv.Count() - 1)
-                    {
-                        Console.SetCursorPosition(0, 3 + _choice * 2);
-                        Console.WriteLine(">");
-                    }
-
-                    key = Console.ReadKey(true);
-                    if (key.Key == ConsoleKey.DownArrow && _choice < inventory.Inv.Count() - 1)
-                    {
-                        _choice++;
-                        Console.SetCursorPosition(0, 3 + ((_choice - 1) * 2));
-                        Console.WriteLine(" ");
-                    }
-                    else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
-                    {
-                        _choice--;
-                        Console.SetCursorPosition(0, 3 + ((_choice + 1) * 2));
-                        Console.WriteLine(" ");
-                    }
-                    else if (key.Key == ConsoleKey.Enter)
-                    {
-                        _confirmItem = true;
-                        Text.ClearArea(0, 3, 80, Console.LargestWindowHeight - 1);
-                        if (inventory.Inv[_choice] is Potion) // Check if the item IS a potion
-                        {
-                            Potion p = (Potion)inventory.Inv[_choice]; //Cast that item to a potion to not crash the code
-                            p.Consume(this);
-                        }
-                    }
+                    Potion p = (Potion)inventory.Potions[_choice]; //Cast that item to a potion to not crash the code
+                    p.Consume(this);
                 }
             }
         }
+
+
+
+       
     }
 
     public void Shop()
     {
-        _confirmAction = false;
-        Console.SetCursorPosition(1, 3);
-        Console.WriteLine("Buy");
-        Console.SetCursorPosition(1, 5);
-        Console.WriteLine("Sell");
-        while (!_confirmAction)
+        if(Select(1, 3, 2, "Buy", "Sell") && _choice == 0)
         {
-            _confirmItem = false;
-            if (_choice >= 0 && _choice <= 1)
-            {
-                Console.SetCursorPosition(0, 3 + _choice * 2);
-                Console.WriteLine(">");
-            }
-
-            var key = Console.ReadKey(true);
-            if (key.Key == ConsoleKey.DownArrow && _choice < 1)
-            {
-                _choice++;
-                Console.SetCursorPosition(0, 3 + ((_choice - 1) * 2));
-                Console.WriteLine(" ");
-            }
-            else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
-            {
-                _choice--;
-                Console.SetCursorPosition(0, 3 + ((_choice + 1) * 2));
-                Console.WriteLine(" ");
-            }
-            else if (key.Key == ConsoleKey.Enter)
-            {
-                _confirmAction = true;
-                if(_choice == 0)
-                {
-                    Game.WriteItems();
-                    
-                }
-            }
+            Game.WriteItems();
         }
     }
 
     public (string, bool) SetLocation() // Returns two values.
     {
+        _confirmAction = false;
         string location = "";
         if(_location == locations[_choice])
         {
@@ -253,6 +122,42 @@
             location = locations[_choice];
             return(location, true);
         }
+    }
+
+    public bool Select(int maxChoice, int startPos, int interval, string text1, string text2)
+    {
+        _confirmAction = false;
+        Console.SetCursorPosition(1, startPos);
+        Console.WriteLine(text1);
+        Console.SetCursorPosition(1, startPos + interval);
+        Console.WriteLine(text2);
+        while (!_confirmAction)
+        {
+            if (_choice >= 0 && _choice <= maxChoice)
+            {
+                Console.SetCursorPosition(0, startPos + _choice * interval);
+                Console.WriteLine(">");
+            }
+
+            var key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.DownArrow && _choice < maxChoice)
+            {
+                _choice++;
+                Console.SetCursorPosition(0, startPos + ((_choice - 1) * interval));
+                Console.WriteLine(" ");
+            }
+            else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
+            {
+                _choice--;
+                Console.SetCursorPosition(0, startPos + ((_choice + 1) * interval));
+                Console.WriteLine(" ");
+            }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                _confirmAction = true;
+            }
+        }
+        return true;
     }
 }
 

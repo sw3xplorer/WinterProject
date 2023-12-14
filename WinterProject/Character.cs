@@ -61,7 +61,7 @@
 
     public virtual void Attack(Character target)
     {
-        // target.Hp -= generator.Next(this.weapon.minDamage, this.weapon.maxDamage);
+        target.Hp -= generator.Next(this.weapon.minDamage, this.weapon.maxDamage);
     }
     public virtual void OnDeath(Player player, Character enemy)
     {

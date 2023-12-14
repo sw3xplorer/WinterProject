@@ -1,5 +1,17 @@
 ﻿public class Item
 {
+    protected bool _isConsumable;
+    public bool IsConsumable
+    {
+        get
+        {
+            return _isConsumable;
+        }
+        private set
+        {
+            
+        }
+    }
     public int weight;
     public int cost;
     protected int sellPrice;

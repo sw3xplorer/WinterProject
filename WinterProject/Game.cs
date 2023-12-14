@@ -37,48 +37,53 @@
     public static void WriteItems()
     {
         // I could have done this without an int variable, but it is just a mess to read.
-        int itemSold;
+        int weaponSold;
+        int armorSold;
+        int potionSold;
         Random generator = new Random();
 
-
-
-        itemSold = generator.Next(Armory.armors.Count());
+        armorSold = generator.Next(Armory.armors.Count());
         Console.SetCursorPosition(1, 3);
 
-        Console.WriteLine(Armory.armors[itemSold].Name);
+        Console.WriteLine(Armory.armors[armorSold].Name);
         Console.SetCursorPosition(1, 4);
-        Console.WriteLine($"Added HP: {Armory.armors[itemSold].AddedHp}");
+        Console.WriteLine($"Added HP: {Armory.armors[armorSold].AddedHp}");
         Console.SetCursorPosition(1, 5);
-        Console.WriteLine($"Weight: {Armory.armors[itemSold].weight}");
+        Console.WriteLine($"Weight: {Armory.armors[armorSold].weight}");
         Console.SetCursorPosition(1, 6);
-        Console.WriteLine($"Price: {Armory.armors[itemSold].cost}");
+        Console.WriteLine($"Price: {Armory.armors[armorSold].cost}");
 
-        itemSold = generator.Next(Armory.playerWeapons.Count());
-        Console.SetCursorPosition(1, 8);
-        Console.WriteLine(Armory.playerWeapons[itemSold].Name);
-
-        Console.SetCursorPosition(1, 9);
-        Console.WriteLine($"Min damage: {Armory.playerWeapons[itemSold].minDamage}");
+        weaponSold = generator.Next(Armory.playerWeapons.Count());
         Console.SetCursorPosition(1, 10);
-        Console.WriteLine($"Max damage: {Armory.playerWeapons[itemSold].maxDamage}");
+        Console.WriteLine(Armory.playerWeapons[weaponSold].Name);
+
         Console.SetCursorPosition(1, 11);
-        Console.WriteLine($"Weight: {Armory.playerWeapons[itemSold].weight}");
+        Console.WriteLine($"Min damage: {Armory.playerWeapons[weaponSold].minDamage}");
         Console.SetCursorPosition(1, 12);
-        Console.WriteLine($"Price: {Armory.playerWeapons[itemSold].cost}");
+        Console.WriteLine($"Max damage: {Armory.playerWeapons[weaponSold].maxDamage}");
+        Console.SetCursorPosition(1, 13);
+        Console.WriteLine($"Weight: {Armory.playerWeapons[weaponSold].weight}");
+        Console.SetCursorPosition(1, 14);
+        Console.WriteLine($"Price: {Armory.playerWeapons[weaponSold].cost}");
 
-        Console.SetCursorPosition(1,13);
-        if(generator.Next(1) == 0)
-        {
-            Console.WriteLine(Armory.potions[0].Name);
-            Console.SetCursorPosition(1,14);
-            Console.WriteLine(Armory.potions[0].cost);
-            Console.SetCursorPosition(1,15);
-            Console.WriteLine(Armory.potions[0].weight);
-            Console.SetCursorPosition(1,16);
-            Console.WriteLine(Armory.potions[0].effect);
-        }
+        Console.SetCursorPosition(1,21);
+        potionSold = generator.Next(2);
 
+        Console.WriteLine(Armory.potions[potionSold].Name);
+        Console.SetCursorPosition(1,22);
+        Console.WriteLine($"Price: {Armory.potions[potionSold].cost}");
+        Console.SetCursorPosition(1,23);
+        Console.WriteLine($"Weight: {Armory.potions[potionSold].weight}");
+        Console.SetCursorPosition(1,24);
+        Console.WriteLine($"Effect: {Armory.potions[potionSold].effect}");
     }
 
+    public static void WriteInventory(Player player)
+    {
+        foreach(Item item in player.inventory.Inv)
+        {
+            Console.WriteLine(item.Name);
+        }
+    }
 
 }
