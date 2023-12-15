@@ -26,12 +26,12 @@ player.inventory.AddItem(chainmailArmor);
 
 // Text.EnemyInfo(goblin);
 // Text.PlayerInfo(player, inventory);
-player.Control(goblin);
+// player.Control(goblin);
 
-// player.Shop();
+player.Shop();
 
 // player.Move();
-// Game.WriteInventory(player);
+// player.inventory.WriteInventory();
 
 
 

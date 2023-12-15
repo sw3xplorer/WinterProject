@@ -66,24 +66,16 @@
         Console.SetCursorPosition(1, 14);
         Console.WriteLine($"Price: {Armory.playerWeapons[weaponSold].cost}");
 
-        Console.SetCursorPosition(1,21);
+        Console.SetCursorPosition(1, 17);
         potionSold = generator.Next(2);
 
         Console.WriteLine(Armory.potions[potionSold].Name);
-        Console.SetCursorPosition(1,22);
+        Console.SetCursorPosition(1, 18);
         Console.WriteLine($"Price: {Armory.potions[potionSold].cost}");
-        Console.SetCursorPosition(1,23);
+        Console.SetCursorPosition(1, 19);
         Console.WriteLine($"Weight: {Armory.potions[potionSold].weight}");
-        Console.SetCursorPosition(1,24);
+        Console.SetCursorPosition(1, 20);
         Console.WriteLine($"Effect: {Armory.potions[potionSold].effect}");
-    }
-
-    public static void WriteInventory(Player player)
-    {
-        foreach(Item item in player.inventory.Inv)
-        {
-            Console.WriteLine(item.Name);
-        }
     }
 
 }

@@ -9,6 +9,9 @@
     string _location = "Shop";
     bool _confirmAction = false;
     bool _confirmItem = false;
+    bool _escKeyPressed = false;
+    bool exitShop = false;
+
     public Player()
     {
         _maxHp = 200;
@@ -50,17 +53,22 @@
 
     public void Move()
     {
+        exitShop = false;
         Console.SetCursorPosition(0, 3);
         Console.WriteLine("Move?");
-        if(Select(1, 5, 2, "Yes", "No") && _choice == 0)
+        if (Select(1, 5, 2, "Yes", "No", false) && _choice == 0)
         {
             Text.ClearArea(0, 3, 10, 10);
             _confirmAction = false;
             WriteLocations();
-            while(!_confirmAction)
+            while (!_confirmAction)
             {
-                if(Select(locations.Count() - 1, 3, 2, "", ""))
+                if (Select(locations.Count() - 1, 3, 2, "", "", false))
                 {
+                    if (Location == "Shop")
+                    {
+                        exitShop = true;
+                    }
                     (Location, _confirmAction) = SetLocation();
                 }
             }
@@ -72,7 +80,7 @@
     public void Control(Character target)
     {
 
-        if(Select(1, 3, 2, "Attack", "Item") && _choice == 0)
+        if (Select(1, 3, 2, "Attack", "Item", false) && _choice == 0)
         {
             Attack(target);
         }
@@ -81,7 +89,7 @@
             _confirmAction = false;
             Text.ClearArea(0, 3, 10, 8);
             inventory.WriteConsumables();
-            if(Select(inventory.Potions.Count() - 1, 3, 2, "", ""))
+            if (Select(inventory.Potions.Count() - 1, 3, 2, "", "", false))
             {
                 Text.ClearArea(0, 3, 80, Console.LargestWindowHeight - 1);
                 if (inventory.Potions[_choice] is Potion) // Check if the item IS a potion
@@ -94,37 +102,68 @@
 
 
 
-       
+
     }
 
-    public void Shop()
+    public void Shop() // Transform into class.
     {
-        if(Select(1, 3, 2, "Buy", "Sell") && _choice == 0)
+        Console.SetCursorPosition(0, Console.LargestWindowHeight - 1);
+        Console.WriteLine("Press ESC to go back.");
+
+        while (!exitShop)
         {
-            Game.WriteItems();
+            while (true)
+            {
+                _escKeyPressed = false;
+                if (Select(1, 3, 2, "Buy", "Sell", true) && _choice == 0 && _escKeyPressed == false)
+                {
+                    Game.WriteItems();
+                    Select(2, 3, 7, "", "", true);
+                    if(_escKeyPressed)
+                    {
+                        Text.ClearArea(0, 2, 40, 40);
+                    }
+                }
+                else if (_choice == 1 && _escKeyPressed == false)
+                {
+                    inventory.WriteInventory();
+                    Select(inventory.Inv.Count() + inventory.Potions.Count() - 1, 3, 2, "", "", true);
+                    if (_escKeyPressed)
+                    {
+                        Text.ClearArea(0, 2, 40, 40);
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            Text.ClearArea(0, 2, 20, 30);
+            Move();
         }
+        Console.WriteLine("?????????????");
     }
 
     public (string, bool) SetLocation() // Returns two values.
     {
         _confirmAction = false;
         string location = "";
-        if(_location == locations[_choice])
+        if (_location == locations[_choice])
         {
             Console.SetCursorPosition(0, 10);
             Console.WriteLine("You are already here.");
             location = locations[_choice];
-            return(location, false);
+            return (location, false);
         }
         else
         {
             Text.ClearArea(0, 3, 20, 12);
             location = locations[_choice];
-            return(location, true);
+            return (location, true);
         }
     }
 
-    public bool Select(int maxChoice, int startPos, int interval, string text1, string text2)
+    public bool Select(int maxChoice, int startPos, int interval, string text1, string text2, bool escKey)
     {
         _confirmAction = false;
         Console.SetCursorPosition(1, startPos);
@@ -154,6 +193,11 @@
             }
             else if (key.Key == ConsoleKey.Enter)
             {
+                _confirmAction = true;
+            }
+            else if (escKey && key.Key == ConsoleKey.Escape)
+            {
+                _escKeyPressed = true;
                 _confirmAction = true;
             }
         }

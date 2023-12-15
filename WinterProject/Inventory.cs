@@ -79,13 +79,32 @@
         }
     }
 
+
+    public void WriteInventory()
+    {
+        i = 3;
+        foreach(Item item in Inv)
+        {
+            Console.SetCursorPosition(1, i);
+            Console.WriteLine(item.Name);
+            i += 2;
+        }
+        foreach(Item potion in Potions)
+        {
+            Console.SetCursorPosition(1, i);
+            Console.WriteLine(potion.Name);
+            i += 2;
+        }
+
+    }
+
     public void AddItem(Item item)
     {
         if (_weight + item.weight > 50)
         {
             Console.WriteLine("Not enough space.");
         }
-        else if (item is Potion)
+        else if (item is Potion || item is LargePotion)
         {
             potions.Add(item);
         }
