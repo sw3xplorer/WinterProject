@@ -37,7 +37,7 @@
     {
         get
         {
-            return _droppedCoins;
+            return _coins;
         }
         set
         {
@@ -58,6 +58,7 @@
     }
 
     protected Weapon weapon = new();
+    protected Armor armor = new();
 
     public virtual void Attack(Character target)
     {
@@ -66,6 +67,15 @@
     public virtual void OnDeath(Player player, Character enemy)
     {
         player._coins += enemy._droppedCoins;
+    }
+
+    public void SetWeapon(Weapon newWeapon)
+    {
+        weapon = newWeapon;
+    }
+    public void SetArmor(Armor newArmor)
+    {
+        armor = newArmor;
     }
     
     

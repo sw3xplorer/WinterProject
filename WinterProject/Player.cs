@@ -6,6 +6,18 @@
     public Inventory inventory = new();
     int coins = 0;
     int _choice = 0;
+
+    public int Choice
+    {
+        get
+        {
+            return _choice;
+        }
+        set
+        {
+            _choice = value;
+        }
+    }
     string _location = "Shop";
     bool _confirmAction = false;
     bool _confirmItem = false;
@@ -21,7 +33,7 @@
         // inventory.AddItem(potion);
         // inventory.AddItem(largePotion);
         // inventory.AddItem(largePotion);
-        weapon = new IronSword();
+        // weapon = new IronSword();
     }
 
     public string Location
@@ -56,7 +68,7 @@
         exitShop = false;
         Console.SetCursorPosition(0, 3);
         Console.WriteLine("Move?");
-        if (Select(1, 5, 2, "Yes", "No", false) && _choice == 0)
+        if (Select(1, 5, 2, "Yes", "No", false) && Choice == 0)
         {
             Text.ClearArea(0, 3, 10, 10);
             _confirmAction = false;
@@ -80,7 +92,7 @@
     public void Control(Character target)
     {
 
-        if (Select(1, 3, 2, "Attack", "Item", false) && _choice == 0)
+        if (Select(1, 3, 2, "Attack", "Item", false) && Choice == 0)
         {
             Attack(target);
         }
@@ -92,9 +104,9 @@
             if (Select(inventory.Potions.Count() - 1, 3, 2, "", "", false))
             {
                 Text.ClearArea(0, 3, 80, Console.LargestWindowHeight - 1);
-                if (inventory.Potions[_choice] is Potion) // Check if the item IS a potion
+                if (inventory.Potions[Choice] is Potion) // Check if the item IS a potion
                 {
-                    Potion p = (Potion)inventory.Potions[_choice]; //Cast that item to a potion to not crash the code
+                    Potion p = (Potion)inventory.Potions[Choice]; //Cast that item to a potion to not crash the code
                     p.Consume(this);
                 }
             }
@@ -105,26 +117,31 @@
 
     }
 
-    public void Shop() // Transform into class.
+    public void Shop()
     {
         Console.SetCursorPosition(0, Console.LargestWindowHeight - 1);
         Console.WriteLine("Press ESC to go back.");
+        Shop shop = new();
 
         while (!exitShop)
         {
             while (true)
             {
                 _escKeyPressed = false;
-                if (Select(1, 3, 2, "Buy", "Sell", true) && _choice == 0 && _escKeyPressed == false)
+                if (Select(1, 3, 2, "Buy", "Sell", true) && Choice == 0 && _escKeyPressed == false)
                 {
-                    Game.WriteItems();
-                    Select(2, 3, 7, "", "", true);
-                    if(_escKeyPressed)
+                    shop.WriteItems();
+                    if (Select(2, 3, 7, "", "", true))
+                    {
+                        shop.Purchase(inventory, this);
+                        Text.ClearArea(0, 2, 40, 40);
+                    }
+                    else if (_escKeyPressed)
                     {
                         Text.ClearArea(0, 2, 40, 40);
                     }
                 }
-                else if (_choice == 1 && _escKeyPressed == false)
+                else if (Choice == 1 && _escKeyPressed == false)
                 {
                     inventory.WriteInventory();
                     Select(inventory.Inv.Count() + inventory.Potions.Count() - 1, 3, 2, "", "", true);
@@ -141,24 +158,23 @@
             Text.ClearArea(0, 2, 20, 30);
             Move();
         }
-        Console.WriteLine("?????????????");
     }
 
     public (string, bool) SetLocation() // Returns two values.
     {
         _confirmAction = false;
         string location = "";
-        if (_location == locations[_choice])
+        if (_location == locations[Choice])
         {
             Console.SetCursorPosition(0, 10);
             Console.WriteLine("You are already here.");
-            location = locations[_choice];
+            location = locations[Choice];
             return (location, false);
         }
         else
         {
             Text.ClearArea(0, 3, 20, 12);
-            location = locations[_choice];
+            location = locations[Choice];
             return (location, true);
         }
     }
@@ -172,23 +188,23 @@
         Console.WriteLine(text2);
         while (!_confirmAction)
         {
-            if (_choice >= 0 && _choice <= maxChoice)
+            if (Choice >= 0 && Choice <= maxChoice)
             {
-                Console.SetCursorPosition(0, startPos + _choice * interval);
+                Console.SetCursorPosition(0, startPos + Choice * interval);
                 Console.WriteLine(">");
             }
 
             var key = Console.ReadKey(true);
-            if (key.Key == ConsoleKey.DownArrow && _choice < maxChoice)
+            if (key.Key == ConsoleKey.DownArrow && Choice < maxChoice)
             {
-                _choice++;
-                Console.SetCursorPosition(0, startPos + ((_choice - 1) * interval));
+                Choice++;
+                Console.SetCursorPosition(0, startPos + ((Choice - 1) * interval));
                 Console.WriteLine(" ");
             }
-            else if (key.Key == ConsoleKey.UpArrow && _choice > 0)
+            else if (key.Key == ConsoleKey.UpArrow && Choice > 0)
             {
-                _choice--;
-                Console.SetCursorPosition(0, startPos + ((_choice + 1) * interval));
+                Choice--;
+                Console.SetCursorPosition(0, startPos + ((Choice + 1) * interval));
                 Console.WriteLine(" ");
             }
             else if (key.Key == ConsoleKey.Enter)

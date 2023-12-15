@@ -15,13 +15,13 @@ Character currEnemy = new Character();
 // currEnemy = goblin; as an example.
 
 
-player.inventory.AddItem(p);
-player.inventory.AddItem(p);
-player.inventory.AddItem(p);
-player.inventory.AddItem(lP);
-player.inventory.AddItem(lP);
-player.inventory.AddItem(ironSword);
-player.inventory.AddItem(chainmailArmor);
+// player.inventory.AddItem(p);
+// player.inventory.AddItem(p);
+// player.inventory.AddItem(p);
+// player.inventory.AddItem(lP);
+// player.inventory.AddItem(lP);
+// player.inventory.AddItem(ironSword);
+// player.inventory.AddItem(chainmailArmor);
 
 
 // Text.EnemyInfo(goblin);
