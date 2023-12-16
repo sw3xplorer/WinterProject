@@ -112,6 +112,7 @@ public class Inventory
     {
         if (_weight + item.weight > 50)
         {
+            Console.SetCursorPosition(0, 36);
             Console.WriteLine("Not enough space.");
         }
         else if (item is Potion)

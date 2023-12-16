@@ -1,8 +1,7 @@
 ﻿public class Player : Character
 {
+    // VARIABLES
     List<string> locations = new() { "Shop", "Wilderness", "Howling Grotto" };
-    // Potion potion = new();
-    // LargePotion largePotion = new();
     public Inventory inventory = new();
     int coins = 0;
     int _choice = 0;
@@ -20,20 +19,46 @@
     }
     string _location = "Shop";
     bool _confirmAction = false;
-    bool _confirmItem = false;
     bool _escKeyPressed = false;
     bool exitShop = false;
+
+    // CONSTRUCTOR
 
     public Player()
     {
         _maxHp = 200;
-        // _hp = _maxHp;
-        _hp = 100;
-        // inventory.AddItem(potion);
-        // inventory.AddItem(potion);
-        // inventory.AddItem(largePotion);
-        // inventory.AddItem(largePotion);
-        // weapon = new IronSword();
+        _hp = _maxHp;
+        weapon = new IronSword();
+        inventory.AddItem(new IronSword());
+        inventory.AddItem(new Potion());
+        inventory.AddItem(new Potion());
+        inventory.AddItem(new Potion());
+    }
+
+    // PROPERTIES
+
+    public Armor Armor
+    {
+        get
+        {
+            return armor;
+        }
+        private set
+        {
+
+        }
+    }
+
+    public Weapon Weapon
+    {
+        get
+        {
+            return weapon;
+        }
+        private set
+        {
+
+        }
     }
 
     public string Location
@@ -48,6 +73,8 @@
             _location = value;
         }
     }
+
+    // METHODS
 
     public void WriteLocations()
     {
@@ -84,14 +111,13 @@
                     (Location, _confirmAction) = SetLocation();
                 }
             }
-            Console.Clear();
         }
+        Console.Clear();
     }
 
     // Player can either attack or use item.
     public void Control(Character target)
     {
-
         if (Select(1, 3, 2, "Attack", "Item", false) && Choice == 0)
         {
             Attack(target);
@@ -103,23 +129,29 @@
             inventory.WriteConsumables();
             if (Select(inventory.Potions.Count() - 1, 3, 2, "", "", false))
             {
-                Text.ClearArea(0, 3, 80, Console.LargestWindowHeight - 1);
-                if (inventory.Potions[Choice] is Potion) // Check if the item IS a potion
+                try
                 {
-                    Potion p = (Potion)inventory.Potions[Choice]; //Cast that item to a potion to not crash the code
-                    p.Consume(this);
+                    if (inventory.Potions[Choice] is Potion) // Check if the item IS a potion
+                    {
+                        Potion p = (Potion)inventory.Potions[Choice]; //Cast that item to a potion to not crash the code
+                        p.Consume(this);
+                        inventory.Potions.RemoveAt(Choice);
+                    }
                 }
+                catch
+                {
+                    Console.WriteLine("Nothing to use.");
+                    Task.Delay(1500).Wait();
+                }
+                Text.ClearArea(0, 3, 80, Console.LargestWindowHeight - 1);
             }
         }
-
-
-
-
     }
 
     public void Shop()
     {
-        Console.SetCursorPosition(0, Console.LargestWindowHeight - 1);
+        Text.PlayerInfo(this, inventory);
+        Console.SetCursorPosition(0, Console.LargestWindowHeight - 2);
         Console.WriteLine("Press ESC to go back.");
         Shop shop = new();
 
@@ -177,7 +209,7 @@
             }
             Text.ClearArea(0, 1, 20, 30);
             Move();
-            Text.ClearArea(0, 1, 20, 30);
+            Console.Clear();
         }
     }
 
@@ -202,6 +234,7 @@
 
     public bool Select(int maxChoice, int startPos, int interval, string text1, string text2, bool escKey)
     {
+        Choice = 0;
         _confirmAction = false;
         Console.SetCursorPosition(1, startPos);
         Console.WriteLine(text1);

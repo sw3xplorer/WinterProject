@@ -13,11 +13,11 @@
 
     public void Purchase(Inventory inventory, Player player)
     {
-        if(player.Choice == 0)
+        if (player.Choice == 0)
         {
-            if(player.Coins - Armory.armors[armorSold].cost >= 0)
+            if (player.Coins - Armory.armors[armorSold].cost >= 0 && player.inventory.Weight <= 50)
             {
-                player.Coins -= Armory.armors[armorSold].cost;
+                player.Coins = -Armory.armors[armorSold].cost;
                 inventory.AddItem(Armory.armors[armorSold]);
                 player.SetArmor(Armory.armors[armorSold]);
             }
@@ -28,12 +28,12 @@
                 Task.Delay(1500).Wait();
             }
         }
-        else if(player.Choice == 1)
+        else if (player.Choice == 1)
         {
-            if(player.Coins - Armory.playerWeapons[weaponSold].cost >= 0)
+            if (player.Coins - Armory.playerWeapons[weaponSold].cost >= 0 && player.inventory.Weight <= 50)
             {
                 inventory.AddItem(Armory.playerWeapons[weaponSold]);
-                player.Coins -= Armory.playerWeapons[weaponSold].cost;
+                player.Coins = -Armory.playerWeapons[weaponSold].cost;
                 player.SetWeapon(Armory.playerWeapons[weaponSold]);
             }
             else
@@ -45,10 +45,10 @@
         }
         else
         {
-            if(player.Coins - Armory.potions[potionSold].cost >= 0)
+            if (player.Coins - Armory.potions[potionSold].cost >= 0 && player.inventory.Weight <= 50)
             {
                 inventory.AddItem(Armory.potions[potionSold]);
-                player.Coins -= Armory.potions[potionSold].cost;
+                player.Coins = -Armory.potions[potionSold].cost;
             }
             else
             {
@@ -57,21 +57,46 @@
                 Task.Delay(1500).Wait();
             }
         }
+        Text.PlayerInfo(player, inventory);
     }
 
     public void Sell(Player player, Inventory inventory)
     {
-        player.Coins = player.inventory.Inv[player.Choice].SellPrice;
-        player.inventory.Weight -= player.inventory.Inv[player.Choice].weight;
-        player.inventory.Inv.RemoveAt(player.Choice);
+        try
+        {
+            player.Coins = player.inventory.Inv[player.Choice].SellPrice;
+            player.inventory.Weight -= player.inventory.Inv[player.Choice].weight;
+            if (player.inventory.Inv[player.Choice] is Armor)
+            {
+                player.SetArmor(new Armor());
+            }
+            if (player.inventory.Inv[player.Choice] is Weapon)
+            {
+                player.SetWeapon(new Weapon());
+            }
+            player.inventory.Inv.RemoveAt(player.Choice);
+        }
+        catch
+        {
+            Console.WriteLine("Nothing to sell.");
+            Task.Delay(1500).Wait();
+        }
         Text.PlayerInfo(player, inventory);
     }
 
     public void SellPotion(Player player, Inventory inventory)
     {
-        player.Coins = player.inventory.Potions[player.Choice].SellPrice;
-        player.inventory.Weight -= player.inventory.Potions[player.Choice].weight;
-        player.inventory.Potions.RemoveAt(player.Choice);
+        try
+        {
+            player.Coins = player.inventory.Potions[player.Choice].SellPrice;
+            player.inventory.Weight -= player.inventory.Potions[player.Choice].weight;
+            player.inventory.Potions.RemoveAt(player.Choice);
+        }
+        catch
+        {
+            Console.WriteLine("Nothing to sell.");
+            Task.Delay(1500).Wait();
+        }
         Text.PlayerInfo(player, inventory);
     }
 

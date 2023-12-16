@@ -62,11 +62,20 @@
 
     public virtual void Attack(Character target)
     {
-        target.Hp -= generator.Next(this.weapon.minDamage, this.weapon.maxDamage);
+        int damage; 
+        damage = generator.Next(weapon.minDamage, weapon.maxDamage);
+        if (generator.Next(100) <= weapon.critChance)
+        {
+            damage = damage * weapon.critMultiplier;
+        }
+        if (generator.Next(100) <= weapon.hitChance)
+        {
+            target.Hp -= damage;
+        }
     }
     public virtual void OnDeath(Player player, Character enemy)
     {
-        player._coins += enemy._droppedCoins;
+        player.Coins = enemy._droppedCoins;
     }
 
     public void SetWeapon(Weapon newWeapon)

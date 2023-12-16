@@ -12,6 +12,6 @@
     public override void OnDeath(Player player, Character enemy)
     {
         _droppedCoins = generator.Next(25, 91);
-        player.Coins += _droppedCoins;
+        player.Coins = _droppedCoins;
     }
 }
