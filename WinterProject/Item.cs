@@ -9,12 +9,23 @@
         }
         private set
         {
-            
+
         }
     }
     public int weight;
     public int cost;
-    protected int sellPrice;
+    protected int _sellPrice;
+    public int SellPrice
+    {
+        get
+        {
+            return _sellPrice;
+        }
+        private set
+        {
+            
+        }
+    }
     public int effect;
     string _name;
     public string Name

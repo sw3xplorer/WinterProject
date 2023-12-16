@@ -76,6 +76,7 @@
     public void SetArmor(Armor newArmor)
     {
         armor = newArmor;
+        MaxHp = newArmor.AddedHp;
     }
     
     

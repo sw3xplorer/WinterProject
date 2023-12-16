@@ -10,6 +10,6 @@
         hitChance = 80;
         weight = 15;
         cost = 400;
-        sellPrice = 188;
+        _sellPrice = 188;
     }
 }

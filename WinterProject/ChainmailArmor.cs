@@ -6,6 +6,6 @@
         _addedHp = 175;
         weight = 25;
         cost = 209;
-        sellPrice = 150;
+        _sellPrice = 150;
     }
 }

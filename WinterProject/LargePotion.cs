@@ -1,11 +1,11 @@
-﻿public class LargePotion : Item
+﻿public class LargePotion : Potion
 {
     public LargePotion()
     {
         Name = "Large healing potion";
         weight = 4;
         cost = 100;
-        sellPrice = 50;
+        _sellPrice = 50;
         effect = 300;
         _isConsumable = true;
     }

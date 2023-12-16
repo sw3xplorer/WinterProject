@@ -6,6 +6,6 @@
         _addedHp = 100;
         weight = 12;
         cost = 150;
-        sellPrice = 100;
+        _sellPrice = 100;
     }
 }

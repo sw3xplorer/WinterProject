@@ -131,7 +131,7 @@
                 if (Select(1, 3, 2, "Buy", "Sell", true) && Choice == 0 && _escKeyPressed == false)
                 {
                     shop.WriteItems();
-                    if (Select(2, 3, 7, "", "", true))
+                    if (Select(2, 3, 7, "", "", true) && _escKeyPressed == false)
                     {
                         shop.Purchase(inventory, this);
                         Text.ClearArea(0, 2, 40, 40);
@@ -143,8 +143,28 @@
                 }
                 else if (Choice == 1 && _escKeyPressed == false)
                 {
-                    inventory.WriteInventory();
-                    Select(inventory.Inv.Count() + inventory.Potions.Count() - 1, 3, 2, "", "", true);
+                    if (Select(1, 3, 2, "Equipment", "Potions", false) && Choice == 0)
+                    {
+                        Text.ClearArea(0, 2, 40, 40);
+                        inventory.WriteInventory();
+                        if (Select(inventory.Inv.Count() - 1, 3, 2, "", "", true) && _escKeyPressed == false)
+                        {
+                            shop.Sell(this, inventory);
+                            Text.ClearArea(0, 2, 40, 40);
+                        }
+                    }
+
+                    else if (Choice == 1)
+                    {
+                        Text.ClearArea(0, 2, 40, 40);
+                        inventory.WriteConsumables();
+                        if (Select(inventory.Potions.Count() - 1, 3, 2, "", "", true) && _escKeyPressed == false)
+                        {
+                            shop.SellPotion(this, inventory);
+                            Text.ClearArea(0, 2, 40, 40);
+                        }
+                    }
+
                     if (_escKeyPressed)
                     {
                         Text.ClearArea(0, 2, 40, 40);
@@ -155,8 +175,9 @@
                     break;
                 }
             }
-            Text.ClearArea(0, 2, 20, 30);
+            Text.ClearArea(0, 1, 20, 30);
             Move();
+            Text.ClearArea(0, 1, 20, 30);
         }
     }
 

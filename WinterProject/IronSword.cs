@@ -8,7 +8,7 @@
         critChance = 15;
         critMultiplier = 2;
         hitChance = 85;
-        sellPrice = 40;
+        _sellPrice = 40;
         cost = 100;
         weight = 8;
     }

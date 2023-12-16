@@ -28,6 +28,7 @@
     }
     public static void PlayerInfo(Player player, Inventory inventory)
     {
+        ClearArea(0, 0, 70, 1);
         Console.SetCursorPosition(0, 0);
         Console.WriteLine($"HP: {player.Hp}/{player.MaxHp}");
         Console.SetCursorPosition(20, 0);

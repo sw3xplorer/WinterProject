@@ -59,6 +59,22 @@
         }
     }
 
+    public void Sell(Player player, Inventory inventory)
+    {
+        player.Coins = player.inventory.Inv[player.Choice].SellPrice;
+        player.inventory.Weight -= player.inventory.Inv[player.Choice].weight;
+        player.inventory.Inv.RemoveAt(player.Choice);
+        Text.PlayerInfo(player, inventory);
+    }
+
+    public void SellPotion(Player player, Inventory inventory)
+    {
+        player.Coins = player.inventory.Potions[player.Choice].SellPrice;
+        player.inventory.Weight -= player.inventory.Potions[player.Choice].weight;
+        player.inventory.Potions.RemoveAt(player.Choice);
+        Text.PlayerInfo(player, inventory);
+    }
+
     public void WriteItems()
     {
         // I could have done this without an int variable, but it is just a mess to read.

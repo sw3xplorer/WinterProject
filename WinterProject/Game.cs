@@ -15,7 +15,7 @@
             {
                 player.Move();
             }
-            if (player.Location == "Shop")
+            else if (player.Location == "Shop")
             {
                 player.Shop();
             }
