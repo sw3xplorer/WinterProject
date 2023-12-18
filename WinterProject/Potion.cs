@@ -10,8 +10,10 @@
         _isConsumable = true;
     }
 
-    public virtual void Consume(Character character)
+    public virtual void Consume(Player player)
     {
-        character.Hp += effect;
+        player.Hp += effect;
+        player.inventory.Weight -= weight;
+        
     }
 }

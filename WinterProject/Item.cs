@@ -1,5 +1,6 @@
 ﻿public class Item
 {
+
     protected bool _isConsumable;
     public bool IsConsumable
     {
@@ -12,6 +13,8 @@
 
         }
     }
+    // Some public variables that can be edited from elsewhere.
+    // (Should be in properties instead, fix later)
     public int weight;
     public int cost;
     protected int _sellPrice;

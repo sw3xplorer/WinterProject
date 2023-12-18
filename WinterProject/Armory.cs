@@ -1,5 +1,6 @@
 ﻿public class Armory
 {
+    // Just data on armor and weapons.
     public static List<Weapon> playerWeapons = new();
     public static List<Armor> armors = new();
     public static List<Item> potions = new();
@@ -15,6 +16,4 @@
         potions.Add(new Potion());
         potions.Add(new LargePotion());
     } 
-
-    
 }

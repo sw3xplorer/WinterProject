@@ -1,6 +1,8 @@
 ﻿public class Character
 {
     // Protected is in between private and public. "Semi-public"
+
+    // General declaration of variables which characters will use
     protected Random generator = new Random();
     protected int _hp;
     protected int _maxHp;
@@ -60,6 +62,7 @@
     protected Weapon weapon = new();
     protected Armor armor = new();
 
+// Attack function which can be adapted to how characters behave
     public virtual void Attack(Character target)
     {
         int damage; 
@@ -73,6 +76,7 @@
             target.Hp -= damage;
         }
     }
+    // What enemies do on death, mainly drop coins
     public virtual void OnDeath(Player player, Character enemy)
     {
         player.Coins = enemy._droppedCoins;

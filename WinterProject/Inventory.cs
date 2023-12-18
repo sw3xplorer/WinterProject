@@ -2,12 +2,15 @@
 
 public class Inventory
 {
+    // Split potions and non potions into two lists due to complexity when player wanted to use potions.
+    // The index from the choice would be used in the inventory, which meant that it would try to use
+    // weapons and armor as potions which would just make THAT certain potion useless.
     List<Item> items = new();
     List<Item> potions = new();
     int _maxWeight = 50;
     int _weight = 0;
     int i = 3;
-    int _consumables;
+    // int _consumables;
     public int Weight
     {
         get
@@ -55,6 +58,7 @@ public class Inventory
         }
     }
 
+// Micke's solution. Avoided since it would not be graded, since it's not my code.
     // public void DisplayConsumables()
     // {
     //     foreach (Item item in items)
@@ -67,6 +71,7 @@ public class Inventory
     //         }
     //     }
     // }
+
     public void WriteConsumables()
     {
         i = 3;
@@ -82,7 +87,7 @@ public class Inventory
                 if (item is Potion || item is LargePotion)
                 {
                     Console.SetCursorPosition(1, i);
-                    Console.WriteLine($"{item.Name} - Sell: {item.SellPrice}");
+                    Console.WriteLine($"{item.Name} - Sell: {item.SellPrice}"); //Write potion name and sell price.
                     i += 2;
                 }
             }
@@ -108,6 +113,7 @@ public class Inventory
         }
     }
 
+    // Adds item to inventory.
     public void AddItem(Item item)
     {
         if (_weight + item.weight > 50)

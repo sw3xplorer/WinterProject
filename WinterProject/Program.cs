@@ -18,23 +18,4 @@ Game.GameFunction(player, bat, goblin, orc, troll, werewolf, currEnemy);
 // Instances can be assigned like variables if they are of the same type.
 // currEnemy = goblin; as an example.
 
-
-// player.inventory.AddItem(p);
-// player.inventory.AddItem(p);
-// player.inventory.AddItem(p);
-// player.inventory.AddItem(lP);
-// player.inventory.AddItem(ironSword);
-// player.inventory.AddItem(chainmailArmor);
-// player.inventory.AddItem(lP);
-
-
-// Text.EnemyInfo(goblin);
-// Text.PlayerInfo(player, inventory);
-// player.Control(goblin);
-
-// player.Shop();
-
-// player.Move();
-// player.inventory.WriteInventory();
-
 Console.ReadLine();
